@@ -47,7 +47,19 @@ bool ReadFile(string fileName, string data[], const int maxArraySize)
 // and returns the count of the teams as a constant integer.
 const int GetCountOfTeam(string teamName, const string teams[], const int maxArraySize)
 {
-    // Work here.
+    // Declaring Variables
+    int index = 0;
+    int count = 0;
+
+    // Counting Team Name Occurrence
+    for (index = 0; index < maxArraySize; index++) {
+        if (teams[index] == teamName) {
+            count++;
+        }
+    }
+
+    // Outputting Count Of Team
+    cout << "The number of times the '" << teamName << "' won the world series is '" << count << "'.";
 }
 
 // This function searches the team's array for the team's name that won the world series 
@@ -77,8 +89,6 @@ const string GetTeamForDate(const string date, const string teams[], const strin
 
     // Outputting Team
     cout << "The team that won the world series on '" << date << "' is '" << teams[index] << "'.";
-
-    return 0;
 }
 
 // This function changes all of the team names to either upper or lower case depending on the value of "to_upper".
