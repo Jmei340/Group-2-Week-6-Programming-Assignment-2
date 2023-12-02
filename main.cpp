@@ -1,15 +1,36 @@
-// program name goes here
-// your name goes here
-// any example usage or helpful command line arguments go here
+// World Series Program
+// Programmers: Fadi Jameel, Joey Mei.
+// This program will read and output the list of World Series winners from 1903 to 2022.
 
 #include <iostream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+using namespace std;
 // Add any other header files here
 
 // This function takes a char to print and a message and prints a nice introduction 
 // surrounded by the characters char. See pic in assignment.
 void Introduction(char c, string message)
 {
-    // Work here.
+    // Initial Outputs
+    cout << "*" << setw(39) << setfill('*') << right << "*" << endl;
+    cout << "** Welcome To My World Series Program **" << endl;
+    cout << "*" << setw(39) << setfill('*') << right << "*" << endl;
+    cout << endl;
+
+    // Output Choices
+    cout << "'c' to invoke 'GetCountOfTeams()'" << endl;
+    cout << "'w' to invoke 'GetMostWinningTeam()'" << endl;
+    cout << "'d' to invoke 'GetTeamForDate()'" << endl;
+    cout << "'v' to invoke 'ConvertTeamNameCase()'" << endl;
+    cout << "'x' to exit the program" << endl;
+    cout << endl;
+    cout << endl;
+
+    // Getting User Inputs
+    cout << "Please enter an operation to perform:";
+    cin >> c;
 }
 
 // This function takes a file name and reads in data, storing it in a string array that is used 
@@ -59,9 +80,36 @@ int main(int argc, char* argv[])
     // Const representing the number of lines of data in both files.
 	const int SIZE_DATA = 120;
 
+    // Declaring Variables
+    int WinnerDates[SIZE_DATA];
+    string message;
 
-    // Work here
+    
+    do {
+        // Getting Introduction
+        Introduction(c, message);
 
+        // Calling Functions
+        if (c == 'c' || c == 'C') {
+
+        }
+        else if (c == 'w' || c == 'W') {
+
+        }
+        else if (c == 'd' || c == 'D') {
+
+        }
+        else if (c == 'v' || c == 'V') {
+
+        }
+
+
+    }
+
+    while (c != 'x' && c != 'X');
+
+    // Outputting Ending Statement
+    cout << "Good bye" << endl;
 
     // Return 0 to indicate success.
     return 0;
