@@ -50,6 +50,7 @@ const int GetCountOfTeam(string teamName, const string teams[], const int maxArr
     // Declaring Variables
     int index = 0;
     int count = 0;
+    string CountOfTeam;
 
     // Counting Team Name Occurrence
     for (index = 0; index < maxArraySize; index++) {
@@ -58,15 +59,47 @@ const int GetCountOfTeam(string teamName, const string teams[], const int maxArr
         }
     }
 
-    // Outputting Count Of Team
-    cout << "The number of times the '" << teamName << "' won the world series is '" << count << "'.";
+    CountOfTeam = count;
+
+    return count;
 }
 
 // This function searches the team's array for the team's name that won the world series 
 // the most times and returns it as a constant string.
 const string GetMostWinningTeam(const string teams[], const int maxArraySize)
 {
-    // Work here.
+    // Declaring Variables
+    int max_count = 0;
+    int count = 0;
+    int i = 0;
+    int j = 0;
+    string MostWinningTeam;
+
+    // Finding Most Occuring Team
+    for (int i = 0; i < maxArraySize; i++) {
+
+        int count = 1;
+        for (int j = i + 1; j < maxArraySize; j++) {
+            if (teams[i] == teams[j]) {
+                count++;
+            }
+        }
+        if (count > max_count) {
+            max_count = count;
+        }
+    }
+    for (int i = 0; i < maxArraySize; i++) {
+
+        int count = 1;
+        for (int j = i + 1; j < maxArraySize; j++) {
+            if (teams[i] == teams[j]) {
+                count++;
+            }
+        }
+        if (count == max_count) {
+            return MostWinningTeam;
+        }
+    }
 }
 
 // This function returns the team that won the world series on the "date".
@@ -75,6 +108,7 @@ const string GetTeamForDate(const string date, const string teams[], const strin
     // Declaring Variables
     int found = 0;
     int index = 0;
+    string Team;
 
     // Finding Teams From Dates
     while (found != 1) {
@@ -86,9 +120,10 @@ const string GetTeamForDate(const string date, const string teams[], const strin
             found = 1;
         }
     }
+    Team = teams[index];
 
-    // Outputting Team
-    cout << "The team that won the world series on '" << date << "' is '" << teams[index] << "'.";
+    // Returning Value
+    return Team;
 }
 
 // This function changes all of the team names to either upper or lower case depending on the value of "to_upper".
@@ -140,6 +175,9 @@ int main(int argc, char* argv[])
     string message;
     string teamNames;
     string teams[SIZE_DATA];
+    string TeamForDate;
+    string CountOfTeam;
+    string MostWinningTeam;
     char c = 'a';
     bool to_upper = false;
 
@@ -147,24 +185,48 @@ int main(int argc, char* argv[])
 
     do {
         // Getting Introduction
-        Introduction(c, message);               // Function works
+        Introduction(c, message);
         ReadFile(filename, data, SIZE_DATA);    // In Progress
 
         // Calling Functions
         if (c == 'c' || c == 'C') {
-            GetCountOfTeam(teamNames, teams, SIZE_DATA);        // In Progress
+            // Getting User Input
+            cout << "Please enter the team name:";
+            cin >> teamNames;
+            
+            // Getting Value From Function
+            CountOfTeam = GetCountOfTeam(teamNames, teams, SIZE_DATA);
+
+            // Outputting Number of Wins for Team
+            cout << "The number of times the '" << teamNames << "' won the world series is '" << CountOfTeam << "'." << endl;
+            cout << endl;
+            cout << endl; 
         }
         else if (c == 'w' || c == 'W') {
-            GetMostWinningTeam(teams, SIZE_DATA);               // In Progress
+            // Getting Most Winning Team
+            MostWinningTeam = GetMostWinningTeam(teams, SIZE_DATA);               // In Progress
+
+            // Outputting Team That Won The Most
+            cout << "The most winning team is '" << MostWinningTeam << "'." << endl;
+            cout << endl;
+            cout << endl;
         }
+
         else if (c == 'd' || c == 'D') {
+            // Getting User Input
             cout << "Please enter the date:";
             cin >> date;
 
-            GetTeamForDate(date, teams, dates, SIZE_DATA);      // Function needs testing
+            // Getting Value From Function
+            TeamForDate = GetTeamForDate(date, teams, dates, SIZE_DATA);
+
+            // Outputting Team for Date
+            cout << "The team that won the world series on '" << date << "' is '" << TeamForDate << "'." << endl;
+            cout << endl;
+            cout << endl;
         }
         else if (c == 'v' || c == 'V') {
-            ConvertTeamNameCase(to_upper, teams, SIZE_DATA);    // Function needs testing
+            ConvertTeamNameCase(to_upper, teams, SIZE_DATA);
         }
 
 
